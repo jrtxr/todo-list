@@ -5,7 +5,7 @@ import "./styles.css";
 
 export const TodoCard = ({ TodoKey }) => {
   const { addTodoInformation, todos, deleteTodo } = useTodo();
-  const { title, description, status, creatAt } = todos.get(TodoKey);
+  const { title, description, status, createdAt } = todos.get(TodoKey);
 
   const handleOnChange = async () => {
     const formData = formRef?.current;
@@ -13,7 +13,7 @@ export const TodoCard = ({ TodoKey }) => {
       title: formData.title.value,
       status: formData.status.value,
       description: formData.description.value,
-      creatAt: creatAt,
+      createdAt: createdAt,
     };
     await addTodoInformation(data, TodoKey);
   };
@@ -52,7 +52,7 @@ export const TodoCard = ({ TodoKey }) => {
           </select>
         </div>
         <div className="cardFooter">
-          <span>Criado em {creatAt}</span>
+          <span>Criado em {createdAt}</span>
           <button className="exluirTodoButton" type="button" onClick={handleOnClick}>
             Excluir
           </button>
