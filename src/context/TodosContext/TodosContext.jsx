@@ -27,9 +27,9 @@ export const TodoProvider = ({ children }) => {
       status: "todo",
       description: "",
       creatAt: getCreatAt(),
-      assigned: "",
     };
     settodos(new Map(todos.set(key, newTodo)));
+
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([...todos]));
   }, [todos]);
 

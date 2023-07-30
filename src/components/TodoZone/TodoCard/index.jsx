@@ -1,18 +1,21 @@
 import { useRef } from "react";
-import "./styles.css";
 import { useTodoContext } from "../../../hooks/TodosHook/TodosHook";
+import { useModalContext } from "../../../hooks/ModalHook/ModalHook";
+
+import "./styles.css";
+import { Modal } from "../../Modal";
 
 export const TodoCard = ({ TodoKey }) => {
   const { addTodoInformation, todos, deleteTodo } = useTodoContext();
-  const { title, description, status, creatAt, assigned } = todos.get(TodoKey);
+  const { setIsOpen, isOpen } = useModalContext();
+  const { title, description, status, creatAt } = todos.get(TodoKey);
 
   const handleOnChange = async () => {
-    const formData = formRef.current;
+    const formData = formRef?.current;
     const data = {
       title: formData.title.value,
       status: formData.status.value,
       description: formData.description.value,
-      assigned: formData.assigned.value,
       creatAt: creatAt,
     };
     await addTodoInformation(data, TodoKey);
@@ -23,10 +26,20 @@ export const TodoCard = ({ TodoKey }) => {
     deleteTodo(TodoKey);
   };
 
+  const openModalTodo = (event) => {
+    event.preventDefault();
+    setIsOpen(true);
+  };
+
   const formRef = useRef();
   return (
     <div className="card">
       <form ref={formRef} onChange={handleOnChange}>
+        <div className="cardHead">
+          <button onClick={openModalTodo} className="openModalButton">
+            Abrir
+          </button>
+        </div>
         <div className="cardBody">
           <input
             maxLength={35}
@@ -36,11 +49,7 @@ export const TodoCard = ({ TodoKey }) => {
             defaultValue={title}
             className="input"
           />
-          <select name="status" ref={formRef} defaultValue={status}>
-            <option value="todo">Todos</option>
-            <option value="doing">Fazendo</option>
-            <option value="complete">Concluída</option>
-          </select>
+
           <textarea
             maxLength={85}
             name="description"
@@ -48,12 +57,12 @@ export const TodoCard = ({ TodoKey }) => {
             defaultValue={description}
             placeholder="Informe a descrição da tarefa"
           />
-          <input
-            name="assigned"
-            ref={formRef}
-            defaultValue={assigned}
-            placeholder="Informe o responsável pela tarefa"
-          />
+
+          <select name="status" ref={formRef} defaultValue={status}>
+            <option value="todo">Todos</option>
+            <option value="doing">Fazendo</option>
+            <option value="complete">Concluída</option>
+          </select>
         </div>
         <div className="cardFooter">
           <span>Criado em {creatAt}</span>
@@ -62,6 +71,14 @@ export const TodoCard = ({ TodoKey }) => {
           </button>
         </div>
       </form>
+      {isOpen && (
+        <Modal>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <span>{status}</span>
+          <span>{creatAt}</span>
+        </Modal>
+      )}
     </div>
   );
 };

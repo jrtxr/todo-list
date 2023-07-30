@@ -1,4 +1,6 @@
 import { useTodoContext } from "../../hooks/TodosHook/TodosHook";
+import { ModalsProvider } from "../../context/ModalContext/ModalContext";
+
 import { TodoCard } from "./TodoCard";
 
 import "./styles.css";
@@ -26,7 +28,11 @@ export const TodoZone = ({ title, status }) => {
         {[...todos.keys()].map((key, index) => {
           const isCurrentState = status === todos.get(key).status;
           if (isCurrentState) {
-            return <TodoCard key={`todo-${index}`} TodoKey={key} />;
+            return (
+              <ModalsProvider key={`todo-${index}`}>
+                <TodoCard TodoKey={key} />
+              </ModalsProvider>
+            );
           }
         })}
       </div>
