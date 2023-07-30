@@ -1,0 +1,49 @@
+:root {
+  --primary-color-1000: #440b2b;
+  --primary-color-800: #4c0d30;
+  --primary-color-600: #5d2544;
+  --primary-color-400: #6f3d59;
+  --primary-color-200: #81556e;
+
+  --light-color: #fff;
+  --dark-color: #282828;
+
+  --shadow-box-light: 0.1rem 0.1rem 0.2rem var(--dark-color);
+  --shadow-box-medium: 0.1rem 0.3rem 0.5rem var(--dark-color);
+  --shadow-box-strong: 0.1rem 0.5rem 0.8rem var(--dark);
+
+  --shadow-text-light: 0.063rem 0.063rem 0.063rem var(--dark-color);
+  --shadow-text-medium: 0.063rem 0.125rem 0.125rem var(--dark-color);
+  --shadow-text-strong: 0.063rem 0.188rem 0.188rem var(--dark-color);
+
+  --font-size-xxsmall: 0.563rem;
+  --font-size-xsmall: 0.625rem;
+  --font-size-small: 0.813rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.225rem;
+  --font-size-xlarge: 1.5rem;
+  --font-size-xxlarge: 2rem;
+  --font-size-title: 4rem;
+  --font-size-subtitle: 3rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  border: red solid 1px;
+}
+
+html {
+  font-size: 93.75%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  background-image: linear-gradient(to right, var(--primary-color-1000), var(--primary-color-600));
+}
+
+h1 {
+  font-size: var(--font-size-large);
+}

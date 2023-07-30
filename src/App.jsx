@@ -1,8 +1,11 @@
+import { TodoProvider } from "./context/TodosContext/TodosContext";
+import { Dashboard } from "./pages/Dashboard";
+
 function App() {
   return (
-    <>
-      <h1>Olá mundo</h1>
-    </>
+    <TodoProvider>
+      <Dashboard />
+    </TodoProvider>
   );
 }
 
