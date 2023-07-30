@@ -20,7 +20,7 @@
 }
 
 .cardHead {
-  padding: 1rem 0;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: flex-end;
 }
@@ -37,28 +37,36 @@
   padding: 1rem 0;
 }
 
-.openModalButton {
-  transition: 0.5s;
-  opacity: 0;
-
-  border-radius: 0.2rem;
+.editTodoButton {
+  background-color: transparent;
   border: none;
-  cursor: pointer;
+  opacity: 0;
+  transition: 0.5s;
 
-  padding: 0.2rem 0.5rem;
-  width: 4rem;
+  border-radius: 50%;
+  padding: 0.4rem;
+
+  cursor: pointer;
+}
+
+.editTodoButton:hover {
+  background-color: var(--light-color);
+}
+
+.card:hover .editTodoButton {
+  opacity: 1;
 }
 
 .exluirTodoButton {
   font-size: var(--font-size-medium);
   font-weight: bold;
 
-  background-color: var(--red-color);
+  background-color: transparent;
   color: var(--light-color);
 
-  border-radius: 0.2rem;
-  border: none;
-  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  border: solid var(--red-color) 2px;
+  padding: 0.5rem;
 
   cursor: pointer;
 
@@ -66,8 +74,8 @@
   opacity: 0;
 }
 
-.card:hover .openModalButton {
-  opacity: 1;
+.exluirTodoButton:hover {
+  background-color: var(--red-color);
 }
 
 .card:hover .exluirTodoButton {
@@ -76,7 +84,9 @@
 
 input {
   padding: 0.8rem;
+
   border: none;
+  border-bottom: solid 1px white;
   background: transparent;
 
   font-size: var(--font-size-medium);
@@ -86,6 +96,9 @@ input {
 select {
   padding: 0.5rem;
   border: none;
+
+  border: none;
+  border-bottom: solid 1px white;
 
   font-size: var(--font-size-medium);
   color: var(--light-color);
@@ -103,6 +116,15 @@ textarea {
   padding: 1rem;
   border: none;
   color: var(--light-color);
+
+  border: none;
+  border-bottom: solid 1px white;
+}
+
+select:disabled,
+input:disabled,
+textarea:disabled {
+  border-bottom: none;
 }
 
 textarea::-webkit-scrollbar {

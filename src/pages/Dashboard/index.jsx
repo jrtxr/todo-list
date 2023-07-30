@@ -3,7 +3,7 @@ import { TodoZone } from "../../components/TodoZone";
 import "./styles.css";
 
 const DEFALUT_TODOLIST_ZONES = [
-  { title: "Todos", status: "todo", borderColor: "white" },
+  { title: "A fazeres", status: "todo", borderColor: "white" },
   { title: "Fazendo", status: "doing", borderColor: "blue" },
   { title: "Concluídas", status: "complete", borderColor: "green" },
 ];
