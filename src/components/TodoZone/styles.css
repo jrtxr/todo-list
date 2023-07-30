@@ -1,5 +1,5 @@
 section {
-  max-width: 30rem;
+  width: 22rem;
   max-height: 100%;
 }
 
@@ -10,7 +10,16 @@ section {
 }
 
 .overflow::-webkit-scrollbar {
-  display: none;
+  width: 0.2rem;
+}
+
+.overflow::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow::-webkit-scrollbar-thumb {
+  background-color: var(--dark-color);
+  border: none;
 }
 
 .head {

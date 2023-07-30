@@ -1,13 +1,10 @@
 import { useRef } from "react";
-import { useTodoContext } from "../../../hooks/TodosHook/TodosHook";
-import { useModalContext } from "../../../hooks/ModalHook/ModalHook";
+import { useTodo } from "../../../hooks/TodosHook/useTodo";
 
 import "./styles.css";
-import { Modal } from "../../Modal";
 
 export const TodoCard = ({ TodoKey }) => {
-  const { addTodoInformation, todos, deleteTodo } = useTodoContext();
-  const { setIsOpen, isOpen } = useModalContext();
+  const { addTodoInformation, todos, deleteTodo } = useTodo();
   const { title, description, status, creatAt } = todos.get(TodoKey);
 
   const handleOnChange = async () => {
@@ -26,20 +23,10 @@ export const TodoCard = ({ TodoKey }) => {
     deleteTodo(TodoKey);
   };
 
-  const openModalTodo = (event) => {
-    event.preventDefault();
-    setIsOpen(true);
-  };
-
   const formRef = useRef();
   return (
     <div className="card">
       <form ref={formRef} onChange={handleOnChange}>
-        <div className="cardHead">
-          <button onClick={openModalTodo} className="openModalButton">
-            Abrir
-          </button>
-        </div>
         <div className="cardBody">
           <input
             maxLength={35}
@@ -71,14 +58,6 @@ export const TodoCard = ({ TodoKey }) => {
           </button>
         </div>
       </form>
-      {isOpen && (
-        <Modal>
-          <h1>{title}</h1>
-          <p>{description}</p>
-          <span>{status}</span>
-          <span>{creatAt}</span>
-        </Modal>
-      )}
     </div>
   );
 };

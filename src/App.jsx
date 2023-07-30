@@ -1,4 +1,4 @@
-import { TodoProvider } from "./context/TodosContext/TodosContext";
+import { TodoProvider } from "./context/TodosContext";
 
 import { Dashboard } from "./pages/Dashboard";
 

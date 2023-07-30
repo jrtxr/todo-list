@@ -21,7 +21,7 @@ export const TodoProvider = ({ children }) => {
   };
 
   const addNewTodo = useCallback(async () => {
-    const key = Math.floor(Math.random() * Date.now()).toString(10);
+    const key = crypto.randomUUID();
     const newTodo = {
       title: "",
       status: "todo",
