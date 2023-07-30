@@ -27,20 +27,22 @@ export const TodoCard = ({ TodoKey }) => {
   return (
     <div className="card">
       <form ref={formRef} onChange={handleOnChange}>
-        <div className="cardHead">
-          <button type="button" onClick={handleOnClick}>
-            -
-          </button>
-        </div>
-
         <div className="cardBody">
-          <input name="title" placeholder="Informe um titulo" ref={formRef} defaultValue={title} />
+          <input
+            maxLength={35}
+            name="title"
+            placeholder="Informe um titulo"
+            ref={formRef}
+            defaultValue={title}
+            className="input"
+          />
           <select name="status" ref={formRef} defaultValue={status}>
             <option value="todo">Todos</option>
             <option value="doing">Fazendo</option>
             <option value="complete">Concluída</option>
           </select>
-          <input
+          <textarea
+            maxLength={85}
             name="description"
             ref={formRef}
             defaultValue={description}
@@ -54,7 +56,10 @@ export const TodoCard = ({ TodoKey }) => {
           />
         </div>
         <div className="cardFooter">
-          <span>{creatAt}</span>
+          <span>Criado em {creatAt}</span>
+          <button className="exluirTodoButton" type="button" onClick={handleOnClick}>
+            Excluir
+          </button>
         </div>
       </form>
     </div>

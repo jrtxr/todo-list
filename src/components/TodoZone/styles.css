@@ -22,8 +22,7 @@ section {
 }
 
 .newTodoButton {
-  padding: 0.4rem 0.6rem;
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-large);
   font-weight: bold;
 
   background-color: var(--light-color);
@@ -31,10 +30,11 @@ section {
 
   border-radius: 0.5rem;
   border: none;
-  cursor: pointer;
+  width: 4rem;
 
+  cursor: pointer;
   transition: 0.3s;
-  opacity: 0.95;
+  opacity: 0.9;
 }
 
 .newTodoButton:hover {
