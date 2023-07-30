@@ -1,26 +1,30 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 export const TodoContext = createContext();
 
-const LOCALSTORAGE_KEY = "@todolist:todos";
+const LOCAL_STORAGE_KEY = "@todolist:todos";
 
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState(() => {
-    const localtodos = localStorage.getItem(LOCALSTORAGE_KEY);
-    if (localtodos) {
-      return new Map(JSON.parse(localtodos));
-    }
-    return new Map();
+    const localTodos = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return localTodos ? new Map(JSON.parse(localTodos)) : new Map();
   });
 
   const getCreatedAt = () => {
     const now = Date.now();
     const newDate = new Date(now);
-
     return newDate.toLocaleString();
   };
 
-  const addNewTodo = useCallback(async () => {
+  const saveToLocalStorage = useCallback((updatedTodos) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([...updatedTodos]));
+  }, []);
+
+  useEffect(() => {
+    saveToLocalStorage(todos);
+  }, [todos, saveToLocalStorage]);
+
+  const addNewTodo = useCallback(() => {
     const key = crypto.randomUUID();
     const newTodo = {
       title: "",
@@ -29,34 +33,33 @@ export const TodoProvider = ({ children }) => {
       createdAt: getCreatedAt(),
     };
     setTodos(new Map(todos.set(key, newTodo)));
-
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([...todos]));
   }, [todos]);
 
   const addTodoInformation = useCallback(
-    async (data, key) => {
-      setTodos(new Map(todos.set(key, data)));
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(todos));
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([...todos]));
+    (data, key) => {
+      const updatedTodos = new Map(todos);
+      updatedTodos.set(key, data);
+      setTodos(updatedTodos);
     },
     [todos]
   );
 
   const deleteTodo = useCallback(
-    async (key) => {
-      todos.delete(key);
-      setTodos(new Map(todos));
-      if (todos.size < 1) {
-        localStorage.removeItem(LOCALSTORAGE_KEY);
-        return;
+    (key) => {
+      const updatedTodos = new Map(todos);
+      updatedTodos.delete(key);
+      setTodos(updatedTodos);
+      if (updatedTodos.size < 1) {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+      } else {
+        saveToLocalStorage(updatedTodos);
       }
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([...todos]));
     },
-    [todos]
+    [todos, saveToLocalStorage]
   );
 
   return (
-    <TodoContext.Provider value={{ todos: todos, addNewTodo, addTodoInformation, deleteTodo }}>
+    <TodoContext.Provider value={{ todos, addNewTodo, addTodoInformation, deleteTodo }}>
       {children}
     </TodoContext.Provider>
   );

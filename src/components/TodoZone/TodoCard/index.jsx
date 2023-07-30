@@ -7,7 +7,7 @@ export const TodoCard = ({ TodoKey }) => {
   const { addTodoInformation, todos, deleteTodo } = useTodo();
   const { title, description, status, createdAt } = todos.get(TodoKey);
 
-  const handleOnChange = async () => {
+  const handleChange = async () => {
     const formData = formRef?.current;
     const data = {
       title: formData.title.value,
@@ -18,7 +18,7 @@ export const TodoCard = ({ TodoKey }) => {
     await addTodoInformation(data, TodoKey);
   };
 
-  const handleOnClick = async (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
     deleteTodo(TodoKey);
   };
@@ -26,7 +26,7 @@ export const TodoCard = ({ TodoKey }) => {
   const formRef = useRef();
   return (
     <div className="card">
-      <form ref={formRef} onChange={handleOnChange}>
+      <form ref={formRef} onChange={handleChange}>
         <div className="cardBody">
           <input
             maxLength={35}
@@ -53,7 +53,7 @@ export const TodoCard = ({ TodoKey }) => {
         </div>
         <div className="cardFooter">
           <span>Criado em {createdAt}</span>
-          <button className="exluirTodoButton" type="button" onClick={handleOnClick}>
+          <button className="exluirTodoButton" type="button" onClick={handleClick}>
             Excluir
           </button>
         </div>

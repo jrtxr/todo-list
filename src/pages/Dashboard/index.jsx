@@ -8,6 +8,8 @@ const DEFALUT_TODOLIST_ZONES = [
   { title: "Concluídas", status: "complete", borderColor: "green" },
 ];
 
+console.log("render");
+
 export const Dashboard = () => {
   return (
     <main>
