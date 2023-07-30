@@ -10,7 +10,7 @@
 
   --shadow-box-light: 0.1rem 0.1rem 0.2rem var(--dark-color);
   --shadow-box-medium: 0.1rem 0.3rem 0.5rem var(--dark-color);
-  --shadow-box-strong: 0.1rem 0.5rem 0.8rem var(--dark);
+  --shadow-box-strong: 0.1rem 0.5rem 0.8rem var(--dark-color);
 
   --shadow-text-light: 0.063rem 0.063rem 0.063rem var(--dark-color);
   --shadow-text-medium: 0.063rem 0.125rem 0.125rem var(--dark-color);
@@ -31,8 +31,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-  border: red solid 1px;
 }
 
 html {

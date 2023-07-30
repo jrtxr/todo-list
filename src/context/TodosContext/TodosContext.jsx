@@ -24,7 +24,7 @@ export const TodoProvider = ({ children }) => {
     const key = Math.floor(Math.random() * Date.now()).toString(10);
     const newTodo = {
       title: "",
-      status: "todos",
+      status: "todo",
       description: "",
       creatAt: getCreatAt(),
       assigned: "",

@@ -3,7 +3,7 @@ main {
   grid-auto-flow: dense;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 2fr));
   gap: 1.5rem;
-  padding: 4rem;
 
-  min-height: 100vh;
+  padding: 4rem;
+  height: 100vh;
 }

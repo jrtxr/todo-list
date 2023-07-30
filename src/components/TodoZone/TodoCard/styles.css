@@ -6,9 +6,11 @@
 
   border-radius: 0.5rem;
   box-shadow: var(--shadow-box-light);
-  padding: 1rem;
+
   transition: 0.5s;
 
+  padding: 1rem;
+  margin-bottom: 1rem;
   display: grid;
   gap: 1rem;
 }

@@ -2,7 +2,7 @@ import { TodoZone } from "../../components/TodoZone";
 import "./styles.css";
 
 const DEFALUT_TODOLIST_ZONES = [
-  { title: "A fazeres", status: "todos" },
+  { title: "Todos", status: "todo" },
   { title: "Fazendo", status: "doing" },
   { title: "Concluídas", status: "complete" },
 ];

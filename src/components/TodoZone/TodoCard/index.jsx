@@ -36,7 +36,7 @@ export const TodoCard = ({ TodoKey }) => {
         <div className="cardBody">
           <input name="title" placeholder="Informe um titulo" ref={formRef} defaultValue={title} />
           <select name="status" ref={formRef} defaultValue={status}>
-            <option value="todos">Todos</option>
+            <option value="todo">Todos</option>
             <option value="doing">Fazendo</option>
             <option value="complete">Concluída</option>
           </select>
