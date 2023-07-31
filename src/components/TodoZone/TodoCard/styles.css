@@ -119,6 +119,8 @@ textarea {
 
   border: none;
   border-bottom: solid 1px white;
+
+  font-size: var(--font-size-medium);
 }
 
 select:disabled,

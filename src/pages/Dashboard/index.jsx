@@ -8,13 +8,17 @@ const DEFALUT_TODOLIST_ZONES = [
   { title: "Concluídas", status: "complete", borderColor: "green" },
 ];
 
-console.log("render");
-
 export const Dashboard = () => {
   return (
     <main>
       {DEFALUT_TODOLIST_ZONES.map(({ status, title, borderColor }, index) => (
-        <TodoZone key={`zone-${index}`} status={status} title={title} borderColor={borderColor} />
+        <TodoZone
+          key={`zone-${index}`}
+          id={`zone-${status}`}
+          status={status}
+          title={title}
+          borderColor={borderColor}
+        />
       ))}
     </main>
   );

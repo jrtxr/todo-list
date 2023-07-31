@@ -37,6 +37,9 @@ export const TodoCard = ({ TodoKey }) => {
           type="button"
           className="editTodoButton"
           title="Botão de editar todo"
+          tabIndex={4}
+          aria-label="editar todo"
+          id={`button-edit-todo-${TodoKey}`}
         >
           {isNotEditable ? "🖊" : "💾"}
         </button>
@@ -51,6 +54,8 @@ export const TodoCard = ({ TodoKey }) => {
             defaultValue={title}
             className="input"
             disabled={isNotEditable}
+            tabIndex={1}
+            id={`input-title-todo-${TodoKey}`}
           />
 
           <textarea
@@ -60,25 +65,43 @@ export const TodoCard = ({ TodoKey }) => {
             defaultValue={description}
             placeholder="Informe a descrição da tarefa"
             disabled={isNotEditable}
+            id={`input-description-todo-${TodoKey}`}
+            tabIndex={2}
           />
 
-          <select name="status" ref={formRef} defaultValue={status} disabled={isNotEditable}>
-            <option value="todo">Todos</option>
-            <option value="doing">Fazendo</option>
-            <option value="complete">Concluída</option>
+          <select
+            name="status"
+            ref={formRef}
+            defaultValue={status}
+            disabled={isNotEditable}
+            tabIndex={3}
+            id={`input-status-todo-${TodoKey}`}
+          >
+            <option id="option-1" value="todo">
+              Todos
+            </option>
+            <option id="option-2" value="doing">
+              Fazendo
+            </option>
+            <option id="option-3" value="complete">
+              Concluída
+            </option>
           </select>
         </div>
-        <div className="cardFooter">
+        <footer className="cardFooter">
           <span>Criado em {createdAt}</span>
           <button
             title="botão de excluir todo"
             className="exluirTodoButton"
             type="button"
             onClick={handleDelete}
+            tabIndex={5}
+            aria-label="Excluir todo"
+            id={`button-delete-todo-${TodoKey}`}
           >
             🗑️
           </button>
-        </div>
+        </footer>
       </form>
     </div>
   );

@@ -9,20 +9,26 @@ export const TodoZone = ({ title, status, borderColor }) => {
 
   return (
     <section>
-      <div className="head" style={{ borderBottom: `${borderColor} 2px solid` }}>
+      <header className="header" style={{ borderBottom: `${borderColor} 2px solid` }}>
         <h1 className="todoZoneTitle">{title}</h1>
         {status === "todo" && (
-          <button className="newTodoButton" onClick={addNewTodo}>
+          <button
+            className="newTodoButton"
+            id="button-new-todo"
+            onClick={addNewTodo}
+            aria-label="adicionar todo"
+            tabIndex={0}
+          >
             +
           </button>
         )}
-      </div>
+      </header>
 
       <div className="overflow">
         {[...todos.keys()].map((key, index) => {
           const isCurrentState = status === todos.get(key).status;
           if (isCurrentState) {
-            return <TodoCard key={`todo-${index}`} TodoKey={key} />;
+            return <TodoCard key={`todo-${index}`} id={`todo-${index}`} TodoKey={key} />;
           }
         })}
       </div>
