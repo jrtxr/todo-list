@@ -4,22 +4,26 @@ import { useTodo } from "../../../hooks/TodosHook/useTodo";
 import "./styles.css";
 
 export const TodoCard = ({ TodoKey }) => {
-  const [isDisabled, setIsDisabled] = useState(false);
   const { addTodoInformation, todos, deleteTodo } = useTodo();
-  const { title, description, status, createdAt } = todos.get(TodoKey);
+  const { title, description, status, createdAt, isEditable } = todos.get(TodoKey);
+  const [isDisabled, setIsDisabled] = useState(isEditable);
 
-  const handleChange = async () => {
+  const handleSave = async () => {
     const formData = formRef?.current;
+    setIsDisabled(!isDisabled);
+
     const data = {
       title: formData.title.value,
       status: formData.status.value,
       description: formData.description.value,
       createdAt: createdAt,
+      isEditable: !isDisabled,
     };
+
     await addTodoInformation(data, TodoKey);
   };
 
-  const handleClick = async (event) => {
+  const handleDelete = async (event) => {
     event.preventDefault();
     deleteTodo(TodoKey);
   };
@@ -29,15 +33,15 @@ export const TodoCard = ({ TodoKey }) => {
     <div className="card">
       <header className="cardHead">
         <button
-          onClick={() => setIsDisabled(!isDisabled)}
+          onClick={handleSave}
           type="button"
           className="editTodoButton"
           title="Botão de editar todo"
         >
-          {isDisabled ? "🖊" : "💾"}
+          {isEditable ? "🖊" : "💾"}
         </button>
       </header>
-      <form ref={formRef} onChange={handleChange}>
+      <form ref={formRef}>
         <div className="cardBody">
           <input
             maxLength={35}
@@ -46,7 +50,7 @@ export const TodoCard = ({ TodoKey }) => {
             ref={formRef}
             defaultValue={title}
             className="input"
-            disabled={isDisabled}
+            disabled={isEditable}
           />
 
           <textarea
@@ -55,15 +59,10 @@ export const TodoCard = ({ TodoKey }) => {
             ref={formRef}
             defaultValue={description}
             placeholder="Informe a descrição da tarefa"
-            disabled={isDisabled}
+            disabled={isEditable}
           />
 
-          <select
-            name="status"
-            ref={formRef}
-            defaultValue={status}
-            disabled={isDisabled || !formRef?.current?.title?.value}
-          >
+          <select name="status" ref={formRef} defaultValue={status} disabled={isEditable}>
             <option value="todo">Todos</option>
             <option value="doing">Fazendo</option>
             <option value="complete">Concluída</option>
@@ -75,7 +74,7 @@ export const TodoCard = ({ TodoKey }) => {
             title="botão de excluir todo"
             className="exluirTodoButton"
             type="button"
-            onClick={handleClick}
+            onClick={handleDelete}
           >
             🗑️
           </button>
