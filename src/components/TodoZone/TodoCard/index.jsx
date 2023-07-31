@@ -5,8 +5,8 @@ import "./styles.css";
 
 export const TodoCard = ({ TodoKey }) => {
   const { addTodoInformation, todos, deleteTodo } = useTodo();
-  const { title, description, status, createdAt, isEditable } = todos.get(TodoKey);
-  const [isDisabled, setIsDisabled] = useState(isEditable);
+  const { title, description, status, createdAt, isNotEditable } = todos.get(TodoKey);
+  const [isDisabled, setIsDisabled] = useState(isNotEditable);
 
   const handleSave = async () => {
     const formData = formRef?.current;
@@ -17,7 +17,7 @@ export const TodoCard = ({ TodoKey }) => {
       status: formData.status.value,
       description: formData.description.value,
       createdAt: createdAt,
-      isEditable: !isDisabled,
+      isNotEditable: !isDisabled,
     };
 
     await addTodoInformation(data, TodoKey);
@@ -38,7 +38,7 @@ export const TodoCard = ({ TodoKey }) => {
           className="editTodoButton"
           title="Botão de editar todo"
         >
-          {isEditable ? "🖊" : "💾"}
+          {isNotEditable ? "🖊" : "💾"}
         </button>
       </header>
       <form ref={formRef}>
@@ -50,7 +50,7 @@ export const TodoCard = ({ TodoKey }) => {
             ref={formRef}
             defaultValue={title}
             className="input"
-            disabled={isEditable}
+            disabled={isNotEditable}
           />
 
           <textarea
@@ -59,10 +59,10 @@ export const TodoCard = ({ TodoKey }) => {
             ref={formRef}
             defaultValue={description}
             placeholder="Informe a descrição da tarefa"
-            disabled={isEditable}
+            disabled={isNotEditable}
           />
 
-          <select name="status" ref={formRef} defaultValue={status} disabled={isEditable}>
+          <select name="status" ref={formRef} defaultValue={status} disabled={isNotEditable}>
             <option value="todo">Todos</option>
             <option value="doing">Fazendo</option>
             <option value="complete">Concluída</option>

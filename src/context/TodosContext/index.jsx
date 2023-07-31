@@ -31,7 +31,7 @@ export const TodoProvider = ({ children }) => {
       status: "todo",
       description: "",
       createdAt: getCreatedAt(),
-      isEditable: false,
+      isNotEditable: false,
     };
     setTodos(new Map(todos.set(key, newTodo)));
   }, [todos]);

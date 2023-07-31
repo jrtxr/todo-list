@@ -40,3 +40,21 @@ body {
 h1 {
   font-size: var(--font-size-large);
 }
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 82.75%;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 55.75%;
+  }
+}
