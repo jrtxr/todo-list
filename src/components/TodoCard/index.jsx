@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useTodo } from "../../../hooks/TodosHook/useTodo";
+import { useTodo } from "../../hooks/TodosHook/useTodo";
 
 import "./styles.css";
 

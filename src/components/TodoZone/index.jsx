@@ -1,6 +1,6 @@
 import { useTodo } from "../../hooks/TodosHook/useTodo";
 
-import { TodoCard } from "./TodoCard";
+import { TodoCard } from "../TodoCard";
 
 import "./styles.css";
 
@@ -26,7 +26,7 @@ export const TodoZone = ({ title, status, borderColor }) => {
 
       <div className="overflow">
         {[...todos.keys()].map((key, index) => {
-          const isCurrentState = status === todos.get(key).status;
+          const isCurrentState = status === todos.get(key)?.status;
           if (isCurrentState) {
             return <TodoCard key={`todo-${index}`} id={`todo-${index}`} TodoKey={key} />;
           }
