@@ -10,7 +10,7 @@ const DEFALUT_TODOLIST_ZONES = [
 
 export const Dashboard = () => {
   return (
-    <main>
+    <main data-testid="main">
       {DEFALUT_TODOLIST_ZONES.map(({ status, title, borderColor }, index) => (
         <TodoZone
           key={`zone-${index}`}

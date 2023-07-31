@@ -5,7 +5,8 @@ import "./styles.css";
 
 export const TodoCard = ({ TodoKey }) => {
   const { addTodoInformation, todos, deleteTodo } = useTodo();
-  const { title, description, status, createdAt, isNotEditable } = todos.get(TodoKey);
+  const todo = todos.get(TodoKey);
+  const { title, description, status, createdAt, isNotEditable } = todo ? todo : {};
   const [isDisabled, setIsDisabled] = useState(isNotEditable);
 
   const handleSave = async () => {
@@ -30,9 +31,10 @@ export const TodoCard = ({ TodoKey }) => {
 
   const formRef = useRef();
   return (
-    <div className="card">
-      <header className="cardHead">
+    <div className="card" data-testid={`card`}>
+      <header className="cardHead" data-testid={`card-header`}>
         <button
+          data-testid={`header-button-save-and-edit`}
           onClick={handleSave}
           type="button"
           className="editTodoButton"
@@ -44,9 +46,10 @@ export const TodoCard = ({ TodoKey }) => {
           {isNotEditable ? "🖊" : "💾"}
         </button>
       </header>
-      <form ref={formRef}>
-        <div className="cardBody">
+      <form ref={formRef} data-testid={`form`}>
+        <div className="cardBody" data-testid={`cardBody`}>
           <input
+            data-testid={`input-title`}
             maxLength={35}
             name="title"
             placeholder="Informe um titulo"
@@ -59,6 +62,7 @@ export const TodoCard = ({ TodoKey }) => {
           />
 
           <textarea
+            data-testid={`text-area-description`}
             maxLength={85}
             name="description"
             ref={formRef}
@@ -70,6 +74,7 @@ export const TodoCard = ({ TodoKey }) => {
           />
 
           <select
+            data-testid={`select-status`}
             name="status"
             ref={formRef}
             defaultValue={status}
@@ -88,9 +93,10 @@ export const TodoCard = ({ TodoKey }) => {
             </option>
           </select>
         </div>
-        <footer className="cardFooter">
+        <footer className="cardFooter" data-testid={`card-footer`}>
           <span>Criado em {createdAt}</span>
           <button
+            data-testid={`footer-button`}
             title="botão de excluir todo"
             className="exluirTodoButton"
             type="button"
